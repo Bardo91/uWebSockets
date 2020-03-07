@@ -24,6 +24,8 @@ file(GLOB_RECURSE SRC_SOCKETS_FILES uSockets/src/*.c)
 add_library(uSockets SHARED ${HDR_SOCKETS_FILES} ${SRC_SOCKETS_FILES})
 set_target_properties(uSockets PROPERTIES CXX_STANDARD 17)
 
+target_compile_definitions(uSockets PUBLIC LIBUS_USE_OPENSSL)
+
 target_include_directories(uSockets
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/uSockets/src>
@@ -32,11 +34,17 @@ target_include_directories(uSockets
 
 find_package(Boost REQUIRED)
 find_package(OpenSSL REQUIRED)
+find_package(ZLIB)
+# find_package(uv)
 
 target_link_libraries(uSockets LINK_PUBLIC Boost::boost)
+target_link_libraries(uSockets LINK_PUBLIC ZLIB::ZLIB)
 
 target_include_directories(uSockets PUBLIC ${OPENSSL_INCLUDE_DIR})
 target_link_libraries(uSockets LINK_PUBLIC ${OPENSSL_LIBRARIES})
+
+# target_include_directories(uSockets PUBLIC ${UV_INCLUDE_DIcR})
+# target_link_libraries(uSockets LINK_PUBLIC ${UV_LIBRARIES})
 
 
 
@@ -65,18 +73,27 @@ write_basic_package_version_file(
 
 
 # This installs the include folder
-install(DIRECTORY src DESTINATION ${CMAKE_INSTALL_PREFIX}/uSockets FILES_MATCHING PATTERN "*.h")
-install(DIRECTORY src DESTINATION ${CMAKE_INSTALL_PREFIX}/uSockets FILES_MATCHING PATTERN "*.inl")
+install(DIRECTORY uSockets/src DESTINATION ${CMAKE_INSTALL_PREFIX}/uSockets FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY uSockets/src DESTINATION ${CMAKE_INSTALL_PREFIX}/uSockets FILES_MATCHING PATTERN "*.inl")
 
-export(TARGETS uSockets NAMESPACE uNetworks:: FILE uSockets.cmake)
+export( TARGETS uSockets 
+        NAMESPACE uNetworks:: 
+        FILE uSockets.cmake)
 
-# # This generates uSocketsTargets.cmake
-# install(EXPORT uSockets
-#     FILE uSocketsTargets.cmake
-#     NAMESPACE uNetworks::
-#     DESTINATION lib/cmake/uSockets
-#     )
+# This generates fastcomTargets.cmake
+install(EXPORT uSocketsTargets
+    FILE uSocketsTargets.cmake
+    NAMESPACE uNetworks::
+    DESTINATION lib/cmake/uSockets
+    )
 
+
+
+configure_file(uSocketsConfig.cmake.in uSocketsConfig.cmake @ONLY)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/uSocketsConfig.cmake"
+        DESTINATION lib/cmake/uSockets
+        )
+    
 
 #---------------------------------------------------------------------------------------------------------------------
 # uWebSockets
@@ -93,7 +110,6 @@ target_include_directories(uWebSockets
 target_link_libraries(uWebSockets LINK_PUBLIC uSockets)
 
 
-
 # ----------------------------------------------------------------------------
 # Install uWebSockets
 # ----------------------------------------------------------------------------
@@ -106,7 +122,7 @@ install(TARGETS uWebSockets
         )
 
 write_basic_package_version_file(
-  fastcomConfigVersion.cmake
+    uWebSocketsConfigVersion.cmake
     VERSION ${PACKAGE_VERSION}
     COMPATIBILITY AnyNewerVersion
     )
@@ -116,11 +132,19 @@ write_basic_package_version_file(
 install(DIRECTORY src DESTINATION ${CMAKE_INSTALL_PREFIX}/uWebSockets FILES_MATCHING PATTERN "*.h")
 install(DIRECTORY src DESTINATION ${CMAKE_INSTALL_PREFIX}/uWebSockets FILES_MATCHING PATTERN "*.inl")
 
-export(TARGETS uWebSockets NAMESPACE uNetworks:: FILE uWebSockets.cmake)
+export( TARGETS uWebSockets 
+        NAMESPACE uNetworks:: 
+        FILE uWebSockets.cmake)
 
-# # This generates uWebSocketsTargets.cmake
-# install(EXPORT uWebSocketsTargets
-#     FILE uWebSocketsTargets.cmake
-#     NAMESPACE uNetworks::
-#     DESTINATION lib/cmake/uWebSockets
-#     )
+# This generates fastcomTargets.cmake
+install(EXPORT uWebSocketsTargets
+    FILE uWebSocketsTargets.cmake
+    NAMESPACE uNetworks::
+    DESTINATION lib/cmake/uWebSockets
+    )
+
+configure_file(uWebSocketsConfig.cmake.in uWebSocketsConfig.cmake @ONLY)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/uWebSocketsConfig.cmake"
+        DESTINATION lib/cmake/uWebSockets
+        )
+    

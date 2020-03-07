@@ -1,0 +1,9 @@
+
+get_filename_component(uSockets_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include(CMakeFindDependencyMacro)
+
+find_dependency(ZLIB REQUIRED)
+
+if(NOT TARGET uNetworks::uSockets)
+    include("${uSockets_CMAKE_DIR}/uSocketsTargets.cmake")
+endif()
