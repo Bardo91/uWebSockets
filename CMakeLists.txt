@@ -73,6 +73,7 @@ write_basic_package_version_file(
 
 
 # This installs the include folder
+install(DIRECTORY uSockets/src DESTINATION ${CMAKE_INSTALL_PREFIX}/uSockets FILES_MATCHING PATTERN "*.hpp")
 install(DIRECTORY uSockets/src DESTINATION ${CMAKE_INSTALL_PREFIX}/uSockets FILES_MATCHING PATTERN "*.h")
 install(DIRECTORY uSockets/src DESTINATION ${CMAKE_INSTALL_PREFIX}/uSockets FILES_MATCHING PATTERN "*.inl")
 
@@ -129,6 +130,7 @@ write_basic_package_version_file(
 
 
 # This installs the include folder
+install(DIRECTORY src DESTINATION ${CMAKE_INSTALL_PREFIX}/uWebSockets FILES_MATCHING PATTERN "*.hpp")
 install(DIRECTORY src DESTINATION ${CMAKE_INSTALL_PREFIX}/uWebSockets FILES_MATCHING PATTERN "*.h")
 install(DIRECTORY src DESTINATION ${CMAKE_INSTALL_PREFIX}/uWebSockets FILES_MATCHING PATTERN "*.inl")
 
