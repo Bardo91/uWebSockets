@@ -33,7 +33,7 @@ target_include_directories(uSockets
 )
 
 find_package(Boost REQUIRED)
-find_package(OpenSSL REQUIRED)
+find_package(OpenSSL 1.1 REQUIRED)
 find_package(ZLIB)
 # find_package(uv)
 
