@@ -97,7 +97,7 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/uSocketsConfig.cmake"
 #---------------------------------------------------------------------------------------------------------------------
 # uWebSockets
 #---------------------------------------------------------------------------------------------------------------------
-file(GLOB_RECURSE HDR_FILES fuzzing/*.h src/*.h)
+file(GLOB_RECURSE HDR_FILES fuzzing/*.h src/*.h src/*.hpp)
 file(GLOB_RECURSE SRC_FILES fuzzing/*.cpp src/*.cpp)
 add_library(uWebSockets SHARED ${HDR_FILES} ${SRC_FILES})
 set_target_properties(uWebSockets PROPERTIES CXX_STANDARD 17)
