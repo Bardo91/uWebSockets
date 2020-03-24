@@ -26,7 +26,7 @@
 #include <algorithm>
 #include <memory>
 
-#include "f2/function2.hpp"
+#include "function2.hpp"
 
 namespace uWS {
 

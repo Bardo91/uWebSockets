@@ -25,7 +25,7 @@
 #include "HttpContextData.h"
 #include "Utilities.h"
 
-#include "f2/function2.hpp"
+#include "function2.hpp"
 
 /* todo: tryWrite is missing currently, only send smaller segments with write */
 

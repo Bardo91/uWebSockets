@@ -25,7 +25,7 @@
 #include <string>
 #include <cstring>
 #include <algorithm>
-#include "f2/function2.hpp"
+#include "function2.hpp"
 
 namespace uWS {
 

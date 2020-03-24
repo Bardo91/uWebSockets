@@ -27,7 +27,7 @@
 
 #include <string_view>
 #include <iostream>
-#include "f2/function2.hpp"
+#include "function2.hpp"
 
 namespace uWS {
 template<bool> struct HttpResponse;

@@ -23,7 +23,7 @@
 #include "HttpParser.h"
 #include "AsyncSocketData.h"
 
-#include "f2/function2.hpp"
+#include "function2.hpp"
 
 namespace uWS {
 

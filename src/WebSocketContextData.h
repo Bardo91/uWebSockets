@@ -18,7 +18,7 @@
 #ifndef UWS_WEBSOCKETCONTEXTDATA_H
 #define UWS_WEBSOCKETCONTEXTDATA_H
 
-#include "f2/function2.hpp"
+#include "function2.hpp"
 #include <string_view>
 
 #include "WebSocketProtocol.h"

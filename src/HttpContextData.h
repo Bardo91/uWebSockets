@@ -21,7 +21,7 @@
 #include "HttpRouter.h"
 
 #include <vector>
-#include "f2/function2.hpp"
+#include "function2.hpp"
 
 namespace uWS {
 template<bool> struct HttpResponse;
