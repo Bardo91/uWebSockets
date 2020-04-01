@@ -10,7 +10,7 @@
 # General config
 #---------------------------------------------------------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.10)
 
 project(uWebSockets VERSION 0.14 LANGUAGES C CXX)
 
